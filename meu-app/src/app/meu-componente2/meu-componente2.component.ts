@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AlunosService } from 'src/app/services/alunos.service';
+
 @Component({
   selector: 'app-meu-componente2',
   templateUrl: './meu-componente2.component.html',
@@ -21,7 +23,11 @@ export class MeuComponente2Component implements OnInit {
 
   isVisible : boolean = false;
 
-  constructor() { }
+  alunos = [];
+
+  constructor(private alunosService: AlunosService) {
+    this.alunos = this.alunosService.getAlunos();
+  }
 
   ngOnInit() {
   }
