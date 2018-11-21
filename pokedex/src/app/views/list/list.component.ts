@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.sass']
 })
 export class ListComponent implements OnInit {
+  
+  currentPokemon = null;
 
   pokeList = [
     { name: 'Bulbassaur', number: 1 },
@@ -17,6 +19,15 @@ export class ListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  get pokemonSprite() {
+    const number = ('000' + this.currentPokemon.number).slice(-3);
+    return `//serebii.net/sunmoon/pokemon/${number}.png`;
+  }
+
+  selectedPokemon(pokemon) {
+    this.currentPokemon = pokemon;
   }
 
 }
