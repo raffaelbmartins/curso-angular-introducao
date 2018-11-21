@@ -15,6 +15,8 @@ export class MeuComponente2Component implements OnInit {
     }
   }
   
+  myValue = 1;
+
   isVisible : boolean = false;
 
   constructor() { }
