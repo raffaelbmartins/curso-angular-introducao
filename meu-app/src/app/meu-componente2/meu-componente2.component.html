@@ -1,22 +1,13 @@
-<p>
-  {{ nome }}
-</p>
+<select (change)="0" #minhaClasse id="select-classe">
+  <option value="" selected disabled>Selecione uma classe</option>
+  <option value="1">Classe 1</option>
+  <option value="2">Classe 2</option>
+  <option value="3">Classe 3</option>
+</select>
 
-<p *ngIf="isVisible; else condicaoFalsa">{{ aluno?.dados?.nome }}</p>
-
-<ng-template #condicaoFalsa>
-  <p>Outro texto</p>
-</ng-template>
-
-<div [ngSwitch]="myValue">
-  <span *ngSwitchCase="1">Valor 1</span>
-  <span *ngSwitchCase="2">Valor 2</span>
-  <span *ngSwitchCase="3">Valor 3</span>
-  <span *ngSwitchCase="">Valor Padrão</span>
-</div>
-
-<ul>
-  <li *ngFor="let list of myList ">{{list}}</li>
-</ul>
-
-
+<div
+  [class.classe1]="minhaClasse.value == 1"
+  [class.classe2]="minhaClasse.value == 2"
+  [class.classe3]="minhaClasse.value == 3"
+  [class.classeDefault]="minhaClasse.value > 0"
+>Minha Classe</div>
