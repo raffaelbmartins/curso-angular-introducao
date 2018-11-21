@@ -15,6 +15,8 @@ export class MeuComponente2Component implements OnInit {
     }
   }
   
+  isVisible : boolean = false;
+
   constructor() { }
 
   ngOnInit() {

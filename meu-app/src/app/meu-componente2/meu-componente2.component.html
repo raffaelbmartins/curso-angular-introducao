@@ -2,6 +2,10 @@
   {{ nome }}
 </p>
 
-<p>{{ aluno?.dados?.nome }}</p>
+<p *ngIf="isVisible; else condicaoFalsa">{{ aluno?.dados?.nome }}</p>
+
+<ng-template #condicaoFalsa>
+  <p>Outro texto</p>
+</ng-template>
 
 
