@@ -15,6 +15,8 @@ export class MeuComponente2Component implements OnInit {
     }
   }
   
+  myList : number[] = [1,2,3,4,5];
+
   myValue = 1;
 
   isVisible : boolean = false;
