@@ -1,3 +1,11 @@
-<ul>
-  <li *ngFor="let aluno of alunos">{{ aluno.nome }}</li>
+<input [(ngModel)]="searchFilter" type="text" (keyup.enter)="getProjects()">
+
+<p *ngIf="loading">Carregando...</p>
+
+<ul *ngIf="projects.length > 0; else notFound">
+    <li *ngFor="let project of projects">{{project.full_name}}</li>
 </ul>
+
+<ng-template #notFound>
+  <p>Nenhum repositório encontrado</p>
+</ng-template>

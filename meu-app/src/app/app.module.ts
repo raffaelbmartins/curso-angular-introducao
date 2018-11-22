@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { MeuComponenteComponent } from './meu-componente/meu-componente.component';
 import { MeuComponente2Component } from './meu-componente2/meu-componente2.component';
@@ -13,7 +15,8 @@ import { MeuComponente2Component } from './meu-componente2/meu-componente2.compo
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
