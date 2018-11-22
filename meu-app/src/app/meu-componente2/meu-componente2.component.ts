@@ -1,63 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
+import { ProjetcsService } from './../services/projetcs.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AlunosService } from 'src/app/services/alunos.service';
-
-interface GitHubResponse {
-  incomplete_results: boolean,
-  items: any[],
-  total_count: number
-}
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-meu-componente2',
   templateUrl: './meu-componente2.component.html',
   styleUrls: ['./meu-componente2.component.sass']
 })
-export class MeuComponente2Component implements OnInit {
-
-  nome = 'Akira';
-
-  aluno = {
-    dados: {
-      nome: 'Maria José'
-    }
-  }
+export class MeuComponente2Component implements OnInit, OnDestroy {
   
-  myList : number[] = [1,2,3,4,5];
-
-  myValue = 1;
-
-  isVisible : boolean = false;
-
-  alunos = [];
-
   searchFilter = '';
-  projects = null;
-  loading = false;
+  projects = [];
+  isAlive: boolean = true;
 
-  constructor(
-    private alunosService: AlunosService,
-    private http: HttpClient
-  ) {
-    this.alunos = this.alunosService.getAlunos();
-  }
+  constructor(private projectsService: ProjetcsService) { }
 
   ngOnInit() {
+    this.projectsService.projects
+    .pipe(
+      takeWhile(() => this.isAlive)
+    )
+    .subscribe(projects => {
+      this.projects = projects;
+    });
+  }
+
+  ngOnDestroy() {
+    this.isAlive = false;
   }
 
   getProjects() {
-    
-    this.loading = true;
-    this.projects = null;
-
-    if (this.searchFilter) {
-      const url = `https://api.github.com/search/repositories?q=${this.searchFilter}`;
-      this.http.get<GitHubResponse>(url)
-        .subscribe(res => {
-          this.projects = res.items;
-        },err => {},() => this.loading = false);
-    }
+    this.projectsService.getProjects(this.searchFilter);
   }
 
 }
