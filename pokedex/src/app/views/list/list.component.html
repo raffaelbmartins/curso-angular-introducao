@@ -1,6 +1,6 @@
 <input [(ngModel)]="nameFilter" type="text" id="poke-filter" placeholder="Search" maxlength="20">
 
-<img [src]="pokemonSprite" *ngIf="currentPokemon !== null" class="selected-pkm" [src]="" alt="">
+<img [src]="pokemonSprite" *ngIf="currentPokemon !== null" class="selected-pkm" alt="">
 
 <ul class="poke-list">
   <li *ngFor="let pokemon of pokemonList" class="poke-list-item" (mouseenter)="selectedPokemon(pokemon)">

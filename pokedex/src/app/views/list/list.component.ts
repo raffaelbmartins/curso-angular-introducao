@@ -6,13 +6,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.sass']
 })
-export class ListComponent {
+export class ListComponent implements OnInit {
   
   nameFilter = '';
   currentPokemon = null;
 
-  constructor(private pokeapiService: PokeapiService) {
-    
+  constructor(private pokeapiService: PokeapiService) { }
+
+  ngOnInit() {
+    this.pokeapiService.listAll();
   }
 
   get pokemonSprite() {
